@@ -1,5 +1,7 @@
 # Sif Docker Swarm Example
 
+![Logo](https://raw.githubusercontent.com/go-sif/sif/master/media/logo-128.png)
+
 This example covers the deployment of a simple [Sif](github.com/go-sif/sif) job to a [Docker Swarm](https://docs.docker.com/engine/swarm/).
 
 ## Building the Example
