@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  sif-coordinator:
+    image: github.com/go-sif/sif-example-docker-swarm/example:latest
+    environment:
+      SIF_NODE_TYPE: coordinator
+    volumes:
+      - type: bind
+        source: ./testenv
+        target: /testenv
+    deploy:
+      endpoint_mode: dnsrr
+      restart_policy:
+        condition: none
+      replicas: 1
+
+  sif-worker:
+    image: github.com/go-sif/sif-example-docker-swarm/example:latest
+    environment:
+      SIF_NODE_TYPE: worker
+    volumes:
+      - type: bind
+        source: ./testenv
+        target: /testenv
+    deploy:
+      endpoint_mode: dnsrr
+      restart_policy:
+        condition: none
+      replicas: 2
