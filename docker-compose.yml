@@ -9,6 +9,8 @@ services:
       - type: bind
         source: ./testenv
         target: /testenv
+      - type: tmpfs
+        target: /tmp
     deploy:
       endpoint_mode: dnsrr
       restart_policy:
@@ -23,6 +25,8 @@ services:
       - type: bind
         source: ./testenv
         target: /testenv
+      - type: tmpfs
+        target: /tmp
     deploy:
       endpoint_mode: dnsrr
       restart_policy:

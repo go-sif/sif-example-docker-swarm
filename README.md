@@ -10,9 +10,9 @@ To build this example, you will need Go version 1.13 and Docker installed.
 
 ```bash
 # Downloads dependencies and test data
-$ make dependencies
+$ make testenv
 # Compiles the example, and builds a Docker image
-$ make build
+$ make docker
 ```
 
 ## Running the Example
