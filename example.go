@@ -23,7 +23,8 @@ func main() {
 	parser := jsonl.CreateParser(&jsonl.ParserConf{
 		PartitionSize: 128,
 	})
-	frame := file.CreateDataFrame("/testenv/*.jsonl", parser, schema)
+	conf := &file.DataSourceConf{ Glob: "/testenv/*.jsonl" }
+	frame := file.CreateDataFrame(conf, parser, schema)
 
 	frame, err := frame.To(
 		ops.AddColumn("count", &sif.Uint32ColumnType{}),
