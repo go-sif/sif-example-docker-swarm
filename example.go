@@ -23,7 +23,7 @@ func main() {
 	parser := jsonl.CreateParser(&jsonl.ParserConf{
 		PartitionSize: 128,
 	})
-	conf := &file.DataSourceConf{ Glob: "/testenv/*.jsonl" }
+	conf := &file.DataSourceConf{Glob: "/testenv/*.jsonl"}
 	frame := file.CreateDataFrame(conf, parser, schema)
 
 	frame, err := frame.To(
@@ -81,7 +81,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	for _, part := range result {
+	for _, part := range result.Collected {
 		row := part.GetRow(0)
 		count, err := row.GetUint32("count")
 		if err != nil {
