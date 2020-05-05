@@ -75,19 +75,20 @@ func main() {
 			log.Fatal(err)
 		}
 	}()
-	// result will be nil in this case, as only certain
-	// operations produce a result.
 	result, err := node.Run(context.Background())
 	if err != nil {
 		log.Fatal(err)
 	}
-	for _, part := range result.Collected {
-		row := part.GetRow(0)
-		count, err := row.GetUint32("count")
-		if err != nil {
-			log.Fatal(err)
+	// result only exists on coordinator
+	if node.IsCoordinator() {
+		for _, part := range result.Collected {
+			row := part.GetRow(0)
+			count, err := row.GetUint32("count")
+			if err != nil {
+				log.Fatal(err)
+			}
+			log.Printf("There have been %d system discoveries in Elite Dangerous in the last 7 days.", count)
+			break
 		}
-		log.Printf("There have been %d system discoveries in Elite Dangerous in the last 7 days.", count)
-		break
 	}
 }
